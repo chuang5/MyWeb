@@ -11,8 +11,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User findByUId(long uId){
-        return userRepository.findByUId(uId);
+    public User findByuId(long uId){
+        return userRepository.findByuId(uId);
     }
 
     public User save(User user){
