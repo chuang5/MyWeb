@@ -1,5 +1,7 @@
 package com.example.server.services;
 
+import java.util.Optional;
+
 import com.example.server.dao.UserRepository;
 import com.example.server.model.User;
 
@@ -13,6 +15,10 @@ public class UserService {
 
     public User findByuId(long uId){
         return userRepository.findByuId(uId);
+    }
+
+    public Optional<User> findByUsername(String username){
+        return userRepository.findByUsername(username);
     }
 
     public User save(User user){
