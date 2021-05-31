@@ -9,7 +9,6 @@ public class SignupRequest {
     @NotBlank
     private String password;
 
-
     public String getUsername() {
         return this.username;
     }

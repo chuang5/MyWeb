@@ -3,6 +3,7 @@ package com.example.server.controller;
 import com.example.server.dao.UserRepository;
 import com.example.server.model.User;
 import com.example.server.payload.LoginRequest;
+import com.example.server.payload.SignupRequest;
 import com.example.server.services.UserService;
 
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,8 +23,8 @@ public class AuthController{
     private UserRepository userRepository;
 
     @PostMapping("/login")
-    public String sayHello(@RequestBody LoginRequest loginRequest){
-        logger.info("in this line");
+    public String login(@RequestBody LoginRequest loginRequest){
+        logger.info("Login: " + loginRequest.toString());
         String username = loginRequest.getUsername();
         String psw = loginRequest.getPassword();
         if(userRepository.existsUserByUsername(username)){
@@ -30,5 +32,21 @@ public class AuthController{
             if(psw.equals(user.getPassword())) return String.format("Hello %s!", username);
         }
         return String.format("Invalid!");
+    }
+
+    @PostMapping("/signup")
+    public String signup(@RequestBody SignupRequest signupRequest){
+        logger.info("Signup: " + signupRequest.toString());
+        String username = signupRequest.getUsername();
+        String psw = signupRequest.getPassword();
+        if(username.equals("") || psw.equals("")){
+            return "Invalid";
+        }else if(userRepository.existsUserByUsername(username)){
+            logger.info("Username exists");
+            return "Username has used.";
+        }
+        User user = new User(username, psw);
+        user = userRepository.save(user);
+        return "User created";
     }
 }
