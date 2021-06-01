@@ -4,7 +4,6 @@ import com.example.server.dao.UserRepository;
 import com.example.server.model.User;
 import com.example.server.payload.LoginRequest;
 import com.example.server.payload.SignupRequest;
-import com.example.server.services.UserService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
