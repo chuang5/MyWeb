@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { TodoList } from './TodoList';
-import { initialTodos } from './initialTodos';
+import { TodoList } from './components/todoList/TodoList';
+import { initialTodos } from './mockups/initialTodos';
 
 function App() {
 	const [todos, setTodos] = useState(initialTodos);
