@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Login } from './components/login/Login';
 import { TodoList } from './components/todoList/TodoList';
 import { initialTodos } from './mockups/initialTodos';
 
@@ -24,8 +25,9 @@ function App() {
 
 	return (
 		<>
+			<Login />
 			{/* <AddTodoForm addTodo={addTodo} /> */}
-			<TodoList todos={todos} toggleTodo={toggleTodo} addTodo={addTodo}/>
+			{/* <TodoList todos={todos} toggleTodo={toggleTodo} addTodo={addTodo}/> */}
 
 		</>
 	);
