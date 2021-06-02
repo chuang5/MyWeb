@@ -1,6 +1,6 @@
-import { Login } from './components/login/Login';
 import { Switch, Route } from 'react-router-dom';
-import { Signup } from './components/login/Signup';
+import { Signup } from './components/auth/Signup';
+import { Login } from './components/auth/Login';
 
 function App() {
 	
