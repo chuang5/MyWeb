@@ -1,5 +1,8 @@
 package com.example.server.controller;
 
+import java.util.Base64;
+import java.util.Base64.*;
+
 import com.example.server.dao.UserRepository;
 import com.example.server.model.User;
 import com.example.server.payload.LoginRequest;
@@ -22,6 +25,9 @@ public class AuthController{
     @Autowired
     private UserRepository userRepository;
 
+    private Encoder encoder = Base64.getEncoder();
+    private Decoder decoder = Base64.getDecoder();
+
     @PostMapping("/login")
     public @ResponseBody ResponseEntity<?> login(@RequestBody LoginRequest loginRequest){
         logger.info("Login: " + loginRequest.toString());
@@ -29,7 +35,7 @@ public class AuthController{
         String psw = loginRequest.getPassword();
         if(userRepository.existsUserByUsername(username)){
             User user = userRepository.findByUsername(username).get();
-            if(psw.equals(user.getPassword())) return ResponseEntity.ok(String.format("Hello %s!", username));
+            if(psw.equals(new String(decoder.decode(user.getPassword())))) return ResponseEntity.ok(String.format("Hello %s!", username));
         }
         return ResponseEntity.ok(String.format("Invalid!"));
     }
@@ -45,7 +51,7 @@ public class AuthController{
             logger.info("Username exists");
             return "Username has used.";
         }
-        User user = new User(username, psw);
+        User user = new User(username, encoder.encodeToString(psw.getBytes()));
         user = userRepository.save(user);
         return "User created";
     }
