@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { initialTodos } from "../../mockups/initialTodos";
 import { TodoListItem } from "./TodoListItem";
 
 interface Props {
@@ -7,8 +8,27 @@ interface Props {
     addTodo: AddTodo
 }
 
-export const TodoList: React.FC<Props> = ({ todos, toggleTodo, addTodo }) => {
+export const TodoList: React.FC<Props> = () => {
     const [text, setText] = useState('');
+    const [todos, setTodos] = useState(initialTodos);
+	const toggleTodo: ToggleTodo = (selectedTodo: Todo) => {
+		const newTodos = todos.map(todo => {
+			if (todo === selectedTodo) {
+				return {
+					...todo,
+					complete: !todo.complete
+				};
+			}
+			return todo;
+		});
+		setTodos(newTodos);
+	}
+
+	const addTodo: AddTodo = (text: string) => {
+		const newTodo: Todo = { text, complete: false };
+		setTodos([...todos, newTodo]);
+	}
+
     return (
         <div>
             <form>
