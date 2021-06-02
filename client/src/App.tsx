@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Login } from './components/login/Login';
+import { Switch, Route } from 'react-router-dom';
 import { TodoList } from './components/todoList/TodoList';
 import { initialTodos } from './mockups/initialTodos';
+import { Signup } from './components/login/Signup';
 
 function App() {
 	const [todos, setTodos] = useState(initialTodos);
@@ -24,12 +26,10 @@ function App() {
 	}
 
 	return (
-		<>
-			<Login />
-			{/* <AddTodoForm addTodo={addTodo} /> */}
-			{/* <TodoList todos={todos} toggleTodo={toggleTodo} addTodo={addTodo}/> */}
-
-		</>
+		<Switch>
+			<Route path='/login' component={Login} />
+			<Route path='/signup' component={Signup} />
+		</Switch>
 	);
 }
 

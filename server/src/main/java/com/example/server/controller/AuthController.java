@@ -8,6 +8,7 @@ import com.example.server.payload.SignupRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,15 +23,15 @@ public class AuthController{
     private UserRepository userRepository;
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest loginRequest){
+    public @ResponseBody ResponseEntity<?> login(@RequestBody LoginRequest loginRequest){
         logger.info("Login: " + loginRequest.toString());
         String username = loginRequest.getUsername();
         String psw = loginRequest.getPassword();
         if(userRepository.existsUserByUsername(username)){
             User user = userRepository.findByUsername(username).get();
-            if(psw.equals(user.getPassword())) return String.format("Hello %s!", username);
+            if(psw.equals(user.getPassword())) return ResponseEntity.ok(String.format("Hello %s!", username));
         }
-        return String.format("Invalid!");
+        return ResponseEntity.ok(String.format("Invalid!"));
     }
 
     @PostMapping("/signup")

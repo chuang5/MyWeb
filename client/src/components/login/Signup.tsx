@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { BASE_SERVER_URL } from "../../config";
 
-export const Login: React.FC = () => {
+export const Signup: React.FC = () =>{
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [res, setRes] = useState('');
@@ -16,13 +16,13 @@ export const Login: React.FC = () => {
         }
         // console.log(e.target.name + " is changed: " + e.target.value);
     }
-    const login = (e : React.MouseEvent) => {
+    const signup = (e : React.MouseEvent) => {
         e.preventDefault();
         const user : User = {
             username : username,
             password : password
         }
-        axios.post(BASE_SERVER_URL + '/login', user)
+        axios.post(BASE_SERVER_URL + '/signup', user)
             .then(response => {
                 console.log(response);
                 console.log(response.data);
@@ -31,7 +31,7 @@ export const Login: React.FC = () => {
     }
     return (
         <div>
-            <h1>Welcome to Login form</h1>
+            <h1>Welcome to Signup form</h1>
             <form>
                 <label>Username: 
                     <input 
@@ -51,9 +51,9 @@ export const Login: React.FC = () => {
                 </label>
                 <button 
                     type='submit'
-                    onClick={login}
+                    onClick={signup}
                 >
-                    Login
+                    Signup
                 </button>
             </form>
         </div>
