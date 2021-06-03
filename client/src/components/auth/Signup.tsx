@@ -1,11 +1,15 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import { BASE_SERVER_URL } from "../../config";
 
-export const Signup: React.FC = () =>{
+interface Props{
+    authentication : Authentication
+}
+
+export const Signup: React.FC<Props> = ({authentication}) =>{
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [res, setRes] = useState('');
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         switch(e.target.name){
             case 'username':
@@ -26,8 +30,11 @@ export const Signup: React.FC = () =>{
             .then(response => {
                 console.log(response);
                 console.log(response.data);
-                setRes(response.data)
             })
+    }
+
+    if(authentication.isAuthenticated){
+        return <Redirect to='/home' />
     }
     return (
         <div>

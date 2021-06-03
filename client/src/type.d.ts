@@ -11,3 +11,7 @@ interface User {
     username: string;
     password: string;
 }
+
+interface Authentication {
+    isAuthenticated: boolean
+}

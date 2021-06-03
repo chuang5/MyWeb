@@ -18,12 +18,15 @@ public class User {
     @NotNull
     @JsonIgnore
     private String password;
+    @NotNull
+    private String token;
 
     public User(){}
 
-    public User(@NotNull String username, @NotNull String password){
+    public User(@NotNull String username, @NotNull String password, @NotNull String token){
         this.username = username;
         this.password = password;
+        this.token = token;
     }
 
     public Long getUId() {
@@ -48,6 +51,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getToken() {
+        return this.token;
+    }
+
+    public void setToekn(String token){
+        this.token = token;
     }
 
 }

@@ -21,6 +21,10 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
+    public Optional<User> findByToken(String token){
+        return userRepository.findByToken(token);
+    }
+
     public User save(User user){
         return userRepository.save(user);
     }

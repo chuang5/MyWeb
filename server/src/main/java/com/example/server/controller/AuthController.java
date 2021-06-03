@@ -1,6 +1,7 @@
 package com.example.server.controller;
 
 import java.util.Base64;
+import java.util.UUID;
 import java.util.Base64.*;
 
 import com.example.server.dao.UserRepository;
@@ -35,7 +36,8 @@ public class AuthController{
         String psw = loginRequest.getPassword();
         if(userRepository.existsUserByUsername(username)){
             User user = userRepository.findByUsername(username).get();
-            if(psw.equals(new String(decoder.decode(user.getPassword())))) return ResponseEntity.ok(String.format("Hello %s!", username));
+            if(psw.equals(new String(decoder.decode(user.getPassword())))) 
+                return ResponseEntity.ok(user);
         }
         return ResponseEntity.ok(String.format("Invalid!"));
     }
@@ -51,7 +53,10 @@ public class AuthController{
             logger.info("Username exists");
             return "Username has used.";
         }
-        User user = new User(username, encoder.encodeToString(psw.getBytes()));
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(encoder.encodeToString(psw.getBytes()));
+        user.setToekn(UUID.randomUUID().toString());
         user = userRepository.save(user);
         return "User created";
     }
