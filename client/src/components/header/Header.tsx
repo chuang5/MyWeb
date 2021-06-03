@@ -17,11 +17,13 @@ const logout = (e: React.MouseEvent) => {
 export const Header: React.FC<Props> = ({ authentication }) => {
     return (
         <Navbar bg='dark' expand='md' variant='dark' sticky='top'>
-            <Navbar.Brand href='/' style={{marginLeft: '1%'}}> MyWeb</Navbar.Brand>
+            <Navbar.Brand href='/' style={{ marginLeft: '1%' }}> MyWeb</Navbar.Brand>
             <Navbar.Collapse className="justify-content-end">
                 {
                     authentication.isAuthenticated ? (
-                        <Nav.Link onClick={logout}><IoIosLogIn className="icon" />Logout</Nav.Link>
+                        <Nav>
+                            <Nav.Link onClick={logout}><IoIosLogIn className="icon" />Logout</Nav.Link>
+                        </Nav>
                     ) : (
                         <Nav>
                             <Nav.Link href='/'><IoIosLogIn className="icon" />Login</Nav.Link>
