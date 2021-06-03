@@ -8,19 +8,26 @@ function App() {
 	const authentication: Authentication = {
 		isAuthenticated: localStorage.getItem('token') != null ? true : false
 	};
+
+	const currentUser: User = {
+		username: '',
+		password: ''
+	}
+	
 	return (
 		<div>
 			<Header authentication={authentication} />
 			<div style={{paddingLeft: '5%', paddingRight: '5%'}}>
 				<Switch>
 					<Route exact path='/'>
-						<Login authentication={authentication} />
+						<Login authentication={authentication} currentUser={currentUser} />
 					</Route>
-					<Route exact path='/signup'>
+					<Route path='/signup'>
 						<Signup authentication={authentication} />
 					</Route>
-					<Route path='/home' component={Landing} />
-					{/* <Route path='/TodoList' component={TodoList} /> */}
+					<Route path='/home'>
+						<Landing authentication={authentication} currentUser={currentUser} />
+					</Route>
 				</Switch>
 			</div>
 		</div>
