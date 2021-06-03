@@ -3,9 +3,7 @@ import { initialTodos } from "../../mockups/initialTodos";
 import { TodoListItem } from "./TodoListItem";
 
 interface Props {
-    todos: Todo[],
-    toggleTodo: ToggleTodo,
-    addTodo: AddTodo
+    todos: Todo[]
 }
 
 export const TodoList: React.FC<Props> = () => {
