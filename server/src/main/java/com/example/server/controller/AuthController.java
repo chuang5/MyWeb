@@ -39,7 +39,7 @@ public class AuthController{
             if(psw.equals(new String(decoder.decode(user.getPassword())))) 
                 return ResponseEntity.ok(user);
         }
-        return ResponseEntity.ok(String.format("Invalid!"));
+        return ResponseEntity.notFound().build();
     }
 
     @PostMapping("/signup")

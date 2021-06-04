@@ -11,21 +11,7 @@ interface Props {
 export const Login: React.FC<Props> = ({ authentication, currentUser }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const loadCurrentUser = () => {
-        axios.request({
-            method: 'GET',
-            url: BASE_SERVER_URL + '/user/me',
-            data: {
-                token: localStorage.getItem('token')
-            }
-        }).then(res => {
-            console.log("User found", res);
-            currentUser.username = res.data.username;
-            currentUser.password = res.data.password;
-        }).catch((err) => {
-            console.log("user not found", err);
-        })
-    }
+    
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         switch (e.target.name) {
             case 'username':
@@ -54,9 +40,7 @@ export const Login: React.FC<Props> = ({ authentication, currentUser }) => {
     }
 
     return (
-        
         <div>
-            {loadCurrentUser}
             <h1>Welcome to Login form</h1>
             <form>
                 <label>Username:
