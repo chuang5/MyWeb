@@ -14,4 +14,5 @@ interface User {
 
 interface Authentication {
     isAuthenticated: boolean
+    username: string
 }

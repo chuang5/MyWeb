@@ -5,10 +5,9 @@ import { BASE_SERVER_URL } from "../../config";
 
 interface Props {
     authentication: Authentication
-    currentUser: User
 }
 
-export const Login: React.FC<Props> = ({ authentication, currentUser }) => {
+export const Login: React.FC<Props> = ({ authentication }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     
@@ -20,7 +19,6 @@ export const Login: React.FC<Props> = ({ authentication, currentUser }) => {
             case 'password':
                 setPassword(e.target.value);
         }
-        // console.log(e.target.name + " is changed: " + e.target.value);
     }
     const login = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -32,7 +30,14 @@ export const Login: React.FC<Props> = ({ authentication, currentUser }) => {
             .then(response => {
                 console.log(response);
                 localStorage.setItem('token', response.data.token)
+                authentication = {
+                    ...authentication,
+                    isAuthenticated: true
+                }
                 window.location.href = '/home'
+            })
+            .catch((err) => {
+                console.log("user not found", err);
             })
     }
     if (authentication.isAuthenticated) {
