@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, {useState} from "react";
-import { BASE_SERVER_URL } from "../../config";
+import { BASE_SERVER_URL } from "./config";
 
 const loadCurrentUser = () => {
     console.log("try to fetch data")

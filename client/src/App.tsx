@@ -3,7 +3,7 @@ import { Signup } from './components/auth/Signup';
 import { Login } from './components/auth/Login';
 import { Landing } from './components/landing/Landing';
 import { Header } from './components/header/Header';
-import { LoadUser } from './components/auth/LoadUser';
+import { LoadUser } from './utils/LoadUser';
 
 
 function App() {

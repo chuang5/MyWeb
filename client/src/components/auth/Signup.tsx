@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-import { BASE_SERVER_URL } from "../../config";
+import { BASE_SERVER_URL } from "../../utils/config";
 
 interface Props{
     authentication : Authentication
