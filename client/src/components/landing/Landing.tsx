@@ -1,7 +1,5 @@
-import axios from "axios";
-import React, {useState} from "react";
+import React from "react";
 import { Redirect } from "react-router-dom";
-import { BASE_SERVER_URL } from "../../utils/config";
 import { initialTodos } from "../../mockups/initialTodos";
 import { TodoList } from "../todoList/TodoList";
 

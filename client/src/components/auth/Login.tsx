@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { BASE_SERVER_URL } from "../../utils/config";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from "react-bootstrap";
+
 interface Props {
     authentication: Authentication
 }
@@ -64,12 +67,12 @@ export const Login: React.FC<Props> = ({ authentication }) => {
                         onChange={handleOnChange}
                     />
                 </label>
-                <button
+                <Button variant='primary'
                     type='submit'
                     onClick={login}
                 >
                     Login
-                </button>
+                </Button>
             </form>
         </div>
     )
